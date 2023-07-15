@@ -22,10 +22,10 @@ h1 {
 
 .columns {
     display: flex;
-}
 
-.columns>* {
-    padding: 0 20px 20px;
+    &>* {
+        padding: 0 20px 20px;
+    }
 }
 
 form {
@@ -70,19 +70,33 @@ button {
     background-color: #596D48;
     border: none;
     border-radius: 8px;
-    padding: 13px 50px
+    padding: 12px 30px;
 }
+
 
 #book-list {
     flex: 1;
+
+    & button {
+        padding: 10px 30px;
+    }
 }
 
 .book {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
     font-size: 18px;
     padding: 15px 10px;
     border-bottom: 1px dotted #596D48;
-}
-
-.book:hover {
-    background-color: #bcc4b5;
+    
+    &:hover {
+        background-color: #bcc4b5;
+    }
+    
+    .book-info {
+        flex: 1;
+        justify-self: flex-start;
+    }
 }

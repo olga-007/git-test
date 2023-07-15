@@ -18,11 +18,24 @@ function updateBookList() {
     while (bookList.firstChild) {
         bookList.removeChild(bookList.firstChild);
     }
-    myLibrary.forEach((book) => {
+    myLibrary.forEach((book, index) => {
+        const bookDiv = document.createElement('div');
+        bookDiv.classList.add('book');
+
         const bookInfo = document.createElement('div');
-        bookInfo.classList.add('book');
+        bookInfo.classList.add('book-info');
         bookInfo.innerText = book.info();
-        bookList.appendChild(bookInfo);
+        bookDiv.appendChild(bookInfo);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Remove';
+        deleteBtn.addEventListener('click', () => {
+            myLibrary.splice(index, 1);
+            updateBookList();
+        });
+        bookDiv.appendChild(deleteBtn);
+
+        bookList.appendChild(bookDiv);
     });
 }
 
