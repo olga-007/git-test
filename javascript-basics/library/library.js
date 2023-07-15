@@ -8,7 +8,7 @@ function Book(title, author, numPages, isRead = false) {
 }
 
 Book.prototype.info = function info() {
-    return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead ? 'already read' : 'not read yet'}`;
+    return `"${this.title}" by ${this.author}, ${this.numPages} pages, ${this.isRead ? 'already read' : 'not read yet'}`;
 };
 
 const bookList = document.getElementById('book-list');
@@ -27,7 +27,7 @@ function updateBookList() {
         bookInfo.innerText = book.info();
         bookDiv.appendChild(bookInfo);
 
-        const readToggle = document.createElement('button');
+        const readToggle = document.createElement('a');
         readToggle.innerText = 'Toggle Read';
         readToggle.addEventListener('click', () => {
             myLibrary[index].isRead = !book.isRead;
@@ -35,7 +35,7 @@ function updateBookList() {
         });
         bookDiv.appendChild(readToggle);
 
-        const deleteBtn = document.createElement('button');
+        const deleteBtn = document.createElement('a');
         deleteBtn.innerText = 'Remove';
         deleteBtn.addEventListener('click', () => {
             myLibrary.splice(index, 1);

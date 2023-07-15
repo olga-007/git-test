@@ -73,20 +73,22 @@ button {
     padding: 12px 30px;
 }
 
+a {
+    font-size: 0.9rem;
+    color: #596D48;
+    cursor:pointer;
+}
+
 
 #book-list {
     flex: 1;
-
-    & button {
-        padding: 10px 30px;
-    }
 }
 
 .book {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     font-size: 18px;
     padding: 15px 10px;
     border-bottom: 1px dotted #596D48;
