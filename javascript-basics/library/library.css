@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightgray;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    width: 1200px;
+}
+
+.title {
+    text-align: center;
+    margin: 30;
+}
+
+.columns {
+    display: flex;
+}
+
+.columns>* {
+    padding: 20px;
+}
+
+form {
+    text-align: start;
+}
+
+.fields {
+    &>div {
+        display: flex;
+        margin-bottom: max(20px, 2vh);
+        flex-direction: column;
+        align-items: start;
+    }
+
+
+    & label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        margin-bottom: 0.1rem;
+    }
+
+    & input {
+        height: 2rem;
+        width: 300px;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.9rem;
+        border: 1px solid #c6c7c7;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    #read {
+        width: 24px;
+    }
+}
+
+button {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #596D48;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 50px
+}
+
+#book-list {
+    flex: 1;
+}
+
+.book {
+    font-size: 18px;
+    padding: 15px 10px;
+    border-bottom: 1px dotted #596D48;
+}
+
+.book:hover {
+    background-color: #bcc4b5;
+}
