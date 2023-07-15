@@ -5,11 +5,11 @@ function Book(title, author, numPages, isRead = false) {
     this.author = author;
     this.numPages = numPages;
     this.isRead = isRead;
-
-    this.info = function info() {
-        return `${title} by ${author}, ${numPages} pages, ${isRead ? 'already read' : 'not read yet'}`;
-    };
 }
+
+Book.prototype.info = function info() {
+    return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead ? 'already read' : 'not read yet'}`;
+};
 
 const bookList = document.getElementById('book-list');
 const newBookForm = document.getElementById('new-book-form');
@@ -26,6 +26,14 @@ function updateBookList() {
         bookInfo.classList.add('book-info');
         bookInfo.innerText = book.info();
         bookDiv.appendChild(bookInfo);
+
+        const readToggle = document.createElement('button');
+        readToggle.innerText = 'Toggle Read';
+        readToggle.addEventListener('click', () => {
+            myLibrary[index].isRead = !book.isRead;
+            updateBookList();
+        });
+        bookDiv.appendChild(readToggle);
 
         const deleteBtn = document.createElement('button');
         deleteBtn.innerText = 'Remove';
