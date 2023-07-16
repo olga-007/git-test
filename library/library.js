@@ -14,42 +14,51 @@ Book.prototype.info = function info() {
 const bookList = document.getElementById('book-list');
 const newBookForm = document.getElementById('new-book-form');
 
-function updateBookList() {
+function createBookDiv(book, index) {
+    const bookDiv = document.createElement('div');
+    bookDiv.classList.add('book');
+
+    const bookInfo = document.createElement('div');
+    bookInfo.classList.add('book-info');
+    bookInfo.innerText = book.info();
+    bookDiv.appendChild(bookInfo);
+
+    const readToggle = document.createElement('a');
+    readToggle.innerText = 'Toggle Read';
+    // eslint-disable-next-line no-use-before-define
+    readToggle.addEventListener('click', toggleReadStatus.bind(bookInfo, book));
+    bookDiv.appendChild(readToggle);
+
+    const deleteBtn = document.createElement('a');
+    deleteBtn.innerText = 'Remove';
+    // eslint-disable-next-line no-use-before-define
+    deleteBtn.addEventListener('click', removeBook.bind(this, index));
+    bookDiv.appendChild(deleteBtn);
+
+    return bookDiv;
+}
+
+function renderBookList() {
     while (bookList.firstChild) {
         bookList.removeChild(bookList.firstChild);
     }
-    myLibrary.forEach((book, index) => {
-        const bookDiv = document.createElement('div');
-        bookDiv.classList.add('book');
+    myLibrary.forEach((book, index) => bookList.appendChild(createBookDiv(book, index)));
+}
 
-        const bookInfo = document.createElement('div');
-        bookInfo.classList.add('book-info');
-        bookInfo.innerText = book.info();
-        bookDiv.appendChild(bookInfo);
+function toggleReadStatus(book) {
+    book.isRead = !book.isRead;
+    this.innerText = book.info();
+}
 
-        const readToggle = document.createElement('a');
-        readToggle.innerText = 'Toggle Read';
-        readToggle.addEventListener('click', () => {
-            myLibrary[index].isRead = !book.isRead;
-            updateBookList();
-        });
-        bookDiv.appendChild(readToggle);
-
-        const deleteBtn = document.createElement('a');
-        deleteBtn.innerText = 'Remove';
-        deleteBtn.addEventListener('click', () => {
-            myLibrary.splice(index, 1);
-            updateBookList();
-        });
-        bookDiv.appendChild(deleteBtn);
-
-        bookList.appendChild(bookDiv);
-    });
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    renderBookList();
 }
 
 function addBookToLibrary(title, author, numPages, isRead) {
-    myLibrary.push(new Book(title, author, numPages, isRead));
-    updateBookList();
+    const book = new Book(title, author, numPages, isRead);
+    const index = myLibrary.push(book) - 1;
+    bookList.appendChild(createBookDiv(book, index));
 }
 
 newBookForm.addEventListener('submit', (e) => {
