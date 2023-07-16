@@ -63,11 +63,17 @@ function addBookToLibrary(title, author, numPages, isRead) {
 
 newBookForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const numPages = document.getElementById('pages').value;
-    const isRead = document.getElementById('read').checked;
-    addBookToLibrary(title, author, numPages, isRead);
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const numPages = document.getElementById('pages');
+    const isRead = document.getElementById('read');
+
+    addBookToLibrary(title.value, author.value, numPages.value, isRead.checked);
+
+    title.value = null;
+    author.value = null;
+    numPages.value = null;
+    isRead.checked = false;
 });
 
 // pre-populate the library
